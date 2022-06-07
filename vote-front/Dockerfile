@@ -1,5 +1,5 @@
-FROM node:13.12.0-alpine as build
-WORKDIR /usr/src/app
+FROM node:13.12.0-alpine as builder
+WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json ./
 COPY package-lock.json ./
@@ -10,6 +10,6 @@ RUN npm run build
 
 # production environment
 FROM nginx:stable-alpine
-COPY --from=build /app/build /usr/share/nginx/html
+COPY --from=builder /app/build /usr/share/nginx/html
 EXPOSE 3000
 CMD ["nginx", "-g", "daemon off;"]
