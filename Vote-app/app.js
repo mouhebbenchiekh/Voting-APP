@@ -37,5 +37,5 @@ app.use("/subjects/", subjectRoute);
 
 // listen to the port
 app.listen(PORT, () => {
-  console.log("app listening on port :" + PORT);
+  console.log("app listening on port  :" + PORT);
 });
